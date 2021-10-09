@@ -4,9 +4,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const { MongoClient } = require('mongodb');
-const { validateIssue } = require('./server/issue.js');
+const { validateIssue } = require('./issue.js');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
 // mongoDB part
@@ -18,7 +18,7 @@ const mongoConf = {
 // mongoDB 4.4 does not accept database on URI (at least on my machine)
 const mongoURI = `mongodb://${mongoConf.domain}`;
 const dbClient = new MongoClient(mongoURI);
-const db = dbClient.db('playground');
+const db = dbClient.db('issuetracker');
 let dbIssueCollection = db.collection('issues');
 
 // always try to connect mongoDB on every request
