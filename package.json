@@ -1,7 +1,7 @@
 {
   "name": "issue-tracker",
   "version": "0.0.1",
-  "description": "remake of issue tracker from college course, using modern versions only",
+  "description": "remake of issue tracker from college course, using latest versions (as of writing) only",
   "main": "server/server.js",
   "scripts": {
     "compile": "webpack",
