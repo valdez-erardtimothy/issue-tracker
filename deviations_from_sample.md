@@ -45,3 +45,18 @@ bunch of changes due to deprecation
 babel-polyfill replaced with core-js and regenerator-runtime due to old core-js version deprecation.
 
 I might have missed something where core-js is applied, left it anyway. (might remove)
+
+
+## hot module replacement
+
+On `webpack.config.js.devServer`
+- `contentBase` is replaced as `static`
+- `'/api/*'` changed to `'api/**'`  on `.proxy`
+
+set `webpack.output.publicPath` to `/js/`
+
+hotreload won't work if this is not the case, to be investigated
+
+### did not replace `watch` on scripts
+
+added separate entry `serve` instead.

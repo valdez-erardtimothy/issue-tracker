@@ -15,11 +15,19 @@ see the [changes](deviations_from_sample.md) I made from the original code.
 1. Install NodeJS. I used ^16 and make sure it is on path
 2. Install MongoDB (I used 4.4)
 3. run mongod (or enable if installed as service)
-2. clone this repository (check the Clone button on repository home page)
-3. cd to the cloned repository
+4. clone this repository (check the Clone button on repository home page)
+5. cd to the cloned repository
 `cd issue-tracker`
-4. run `npm ci`
-5.
-5. run `npm run compile`
-6. run `npm run start`
-7. go to localhost:3000 on your preferred browser.
+6. run `npm ci`
+7. run `npm run start`
+
+
+if you don't want hot reloading:
+
+8. run `npm run compile`
+9. go to [localhost:3000](localhost:3000) on your preferred browser.
+
+if you want hot reloading:
+
+8. run `npm run serve`
+9. go to [localhost:8000](localhost:8000) on your preferred browser.
