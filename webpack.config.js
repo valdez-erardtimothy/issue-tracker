@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/App.jsx'),
+    app: [path.resolve(__dirname, 'src/App.jsx')],
     vendor: [
       'react',
       'react-dom',
@@ -10,6 +10,7 @@ module.exports = {
     ]
   },
   output: {
+    publicPath: '/js/',
     path: path.resolve(__dirname, 'public/js'),
     filename: '[name].bundle.js'
   },
@@ -35,5 +36,14 @@ module.exports = {
       }
     ]
 
+  },
+  devServer: {
+    port: 8000,
+    static: path.resolve(__dirname, 'public'),
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:3000'
+      }
+    }
   }
 };
