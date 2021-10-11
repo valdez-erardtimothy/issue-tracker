@@ -61,7 +61,13 @@ hotreload won't work if this is not the case, to be investigated
 
 added separate entry `serve` instead.
 
+
+
 ## hot-middleware
+
+### webpack config
+
+used a separate webpack.dev.js instead of pushing entry points via javascript
 
 ### `hotUpdateChunkFilename` and `hotUpdateMainFilename`
 
