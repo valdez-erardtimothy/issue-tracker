@@ -21,7 +21,6 @@ see the [changes](deviations_from_sample.md) I made from the original code.
 6. run `npm ci`
 7. run `npm run start`
 
-
 if you don't want hot reloading:
 
 8. run `npm run compile`
@@ -31,3 +30,7 @@ if you want hot reloading:
 
 8. run `npm run serve`
 9. go to [localhost:8000](localhost:8000) on your preferred browser.
+
+With webpack-hot-middleware, this is now available:
+8. `npm start`
+9. go to [localhost:3000](localhost:8000) on your preferred browser. setting up separate front-end server is no longer needed.
