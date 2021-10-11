@@ -14,6 +14,7 @@ module.exports = merge(config, {
       }
     }
   },
+  devtool: 'source-map',
   entry: {
     app: [
       'webpack-hot-middleware/client?path=/__webpack_hmr'
