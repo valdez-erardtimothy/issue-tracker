@@ -20,11 +20,11 @@ class IssueList extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newIssue),
         }).then(response => {
-            console.debug('create issue response:', response);
+            // console.debug('create issue response:', response);
             if (response.ok) {
-                console.debug('new issue response is ok');
+                // console.debug('new issue response is ok');
                 response.json().then(updatedIssue => {
-                    console.debug('new issue:', updatedIssue);
+                    // console.debug('new issue:', updatedIssue);
                     updatedIssue.created = new Date(updatedIssue.created);
                     if (updatedIssue.completionDate)
                         updatedIssue.completionDate = new Date(updatedIssue.completionDate);
@@ -44,7 +44,10 @@ class IssueList extends React.Component {
 
     componentDidMount() {
         this.loadData();
-        // window.alert('reloaded');
+    }
+    componentWillUnmount() {
+        // window.alert('Issuelist unmounting');
+        console.debug('IssueList unmounting');
     }
 
     loadData() {
@@ -54,12 +57,12 @@ class IssueList extends React.Component {
                     response.json().then(data => {
                         data.records.forEach(issue => {
                             issue.created = new Date(issue.created);
-                            console.debug('issue:', issue);
+                            // console.debug('issue:', issue);
                             if (issue.completionDate) {
                                 issue.completionDate = new Date(issue.completionDate);
                             }
                         });
-                        console.debug('data.records to be set as issues state', data.records)
+                        // console.debug('data.records to be set as issues state', data.records)
                         this.setState({ issues: data.records });
                     })
                 } else {
@@ -68,11 +71,11 @@ class IssueList extends React.Component {
                     });
                 }
             }).catch(err => {
-                console.debug('error in fetching issues:', err);
+                console.error('error in fetching issues:', err);
             });
     }
     render() {
-        console.debug('issues:', this.state.issues);
+        // console.debug('issues:', this.state.issues);
         return (
             <div>
                 <h1>Issue Tracker</h1>

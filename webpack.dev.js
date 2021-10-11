@@ -19,6 +19,10 @@ module.exports = merge(config, {
       'webpack-hot-middleware/client?path=/__webpack_hmr'
     ]
   },
+  output: {
+    hotUpdateChunkFilename: 'js/hot-update.js',
+    hotUpdateMainFilename: 'js/hot-update.json',
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ]
