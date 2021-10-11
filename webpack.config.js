@@ -3,11 +3,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     app: [path.resolve(__dirname, 'src/App.jsx')],
-    vendor: [
-      'react',
-      'react-dom',
-      'whatwg-fetch'
-    ]
   },
   output: {
     publicPath: '/js/',
@@ -37,13 +32,4 @@ module.exports = {
     ]
 
   },
-  devServer: {
-    port: 8000,
-    static: path.resolve(__dirname, 'public'),
-    proxy: {
-      '/api/**': {
-        target: 'http://localhost:3000'
-      }
-    }
-  }
 };

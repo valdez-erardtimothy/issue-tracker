@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 const { MongoClient } = require('mongodb');
 const { validateIssue } = require('./issue.js');
-
+const process = require('process');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
@@ -28,6 +28,21 @@ app.use(async function (req, res, next) {
 })
 
 // express part
+
+if (process.env.NODE_ENV !== "production") {
+  const webpack = require('webpack');
+  const webpackConf = require('../webpack.dev.js');
+  const compiler = webpack(webpackConf);
+  const devMiddleware = require('webpack-dev-middleware');
+  const hotMiddleware = require('webpack-hot-middleware');
+
+  app.use(devMiddleware(compiler, {
+    publicPath: webpackConf.output.publicPath
+  }));
+  app.use(hotMiddleware(compiler, {
+    path: "/__webpack_hmr",
+  }));
+}
 
 app.get('/api/issues', async (req, res) => {
   // const metadata = { total_count: issues.length };

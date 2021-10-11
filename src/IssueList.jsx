@@ -81,6 +81,7 @@ class IssueList extends React.Component {
                 <button onClick={this.createTestIssue}>Add</button>
                 <hr />
                 <IssueAdd createIssue={this.createIssue} />
+                <p>asdzxcvzxcv</p>
             </div>
         );
     }
