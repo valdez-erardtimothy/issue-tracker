@@ -60,3 +60,31 @@ hotreload won't work if this is not the case, to be investigated
 ### did not replace `watch` on scripts
 
 added separate entry `serve` instead.
+
+
+
+## hot-middleware
+
+### webpack config
+
+used a separate webpack.dev.js instead of pushing entry points via javascript
+
+### `hotUpdateChunkFilename` and `hotUpdateMainFilename`
+
+removed hashes for now. 
+
+got to find way to remove the caching behavior (when starting a new node server, hmr-middleware looks for the filename with the old hash, causing an error.)
+
+### doesn't quite "hot-reload"
+
+tested by wrapping with `<PageContainer>` wrapper component with `<HMRTest>` child component, changing something there still rerenders `<IssueList>`
+
+unsure: 
+
+it might have something to do with the fact I removed hash in the hot-reload filenames, as when I did it before, I think it IssueList did not re-render. to test next time.
+
+Update: tested on a clone with mint VM, tested with Firefox browser in VM, and chrome and firefox in host PC. looks like the problem is not linked to the browser.
+
+<img src="md-assets/Screenshot 2021-10-12 025504.png" width="100%"/>
+
+<img src="md-assets/Screenshot 2021-10-12 030600.png" width="100%"/>
