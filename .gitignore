@@ -3,3 +3,5 @@ public/js/app.bundle.js
 public/js/vendor.bundle.js
 
 package-lock.json
+
+**.map
