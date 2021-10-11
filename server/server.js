@@ -36,6 +36,10 @@ if (process.env.NODE_ENV !== "production") {
   const devMiddleware = require('webpack-dev-middleware');
   const hotMiddleware = require('webpack-hot-middleware');
 
+  app.use(function (req, res, next) {
+    res.setHeader('Cache-Control', 'max-age=0, must-revalidate');
+    next();
+  });
   app.use(devMiddleware(compiler, {
     publicPath: webpackConf.output.publicPath
   }));

@@ -44,6 +44,7 @@ class IssueList extends React.Component {
 
     componentDidMount() {
         this.loadData();
+        // window.alert('reloaded');
     }
 
     loadData() {
@@ -81,7 +82,7 @@ class IssueList extends React.Component {
                 <button onClick={this.createTestIssue}>Add</button>
                 <hr />
                 <IssueAdd createIssue={this.createIssue} />
-                <p>asdzxcvzxcv</p>
+                <p></p>
             </div>
         );
     }
