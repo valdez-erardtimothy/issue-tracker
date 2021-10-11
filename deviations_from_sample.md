@@ -82,3 +82,9 @@ tested by wrapping with `<PageContainer>` wrapper component with `<HMRTest>` chi
 unsure: 
 
 it might have something to do with the fact I removed hash in the hot-reload filenames, as when I did it before, I think it IssueList did not re-render. to test next time.
+
+Update: tested on a clone with mint VM, tested with Firefox browser in VM, and chrome and firefox in host PC. looks like the problem is not linked to the browser.
+
+<img src="md-assets/Screenshot 2021-10-12 025504.png" width="100%"/>
+
+<img src="md-assets/Screenshot 2021-10-12 030600.png" width="100%"/>
