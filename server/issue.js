@@ -30,6 +30,7 @@ function validateIssue(issue) {
     return `${issue.status} is not a valid status.`;
   return null;
 }
-module.exports = {
+
+export default {
   validateIssue: validateIssue
-}
+};

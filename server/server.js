@@ -1,18 +1,23 @@
 'use strict';
 
-const express = require('express');
+import express from 'express';
 const app = express();
-const path = require('path');
-const { MongoClient } = require('mongodb');
-const { validateIssue } = require('./issue.js');
-const process = require('process');
+import path from 'path';
+import { MongoClient } from 'mongodb';
+import { validateIssue } from './issue.js';
+import process from 'process';
+import "babel-polyfill";
+
+import SourceMapSupport from 'source-map-support';
+SourceMapSupport.install();
+
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
+
 
 // mongoDB part
 const mongoConf = {
   domain: 'localhost',
-  port: 27017,
 }
 
 // mongoDB 4.4 does not accept database on URI (at least on my machine)

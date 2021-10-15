@@ -6,6 +6,6 @@ export default function HMRTest(props) {
     })
 
     return <>
-        <p>sasdasdt</p>
+        <p>asdasdst</p>
     </>
 }

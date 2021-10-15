@@ -26,7 +26,9 @@ use express.json() instead.
 
 https://babeljs.io/docs/en/env/
 
-## there is now a babel.config.json file
+## ~~there is now a babel.config.json file~~
+
+replaced with webpack
 
 ## MongoDB
 
@@ -88,3 +90,9 @@ Update: tested on a clone with mint VM, tested with Firefox browser in VM, and c
 <img src="md-assets/Screenshot 2021-10-12 025504.png" width="100%"/>
 
 <img src="md-assets/Screenshot 2021-10-12 030600.png" width="100%"/>
+
+## Server-side Es2015
+
+used @babel/register instead of babel-register.
+
+version bumped from 6.x to 7.15
