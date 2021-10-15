@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 
 export default function HMRTest(props) {
-    useEffect(() => {
-        console.debug('HMR component rendering');
-    })
+  useEffect(() => {
+    console.debug('HMR component rendering');
+  });
 
-    return <>
-        <p>asdasdst</p>
+  return (
+    <>
+      <p>asdasdst</p>
     </>
+  );
 }
