@@ -5,3 +5,4 @@ public/js/vendor.bundle.js
 package-lock.json
 
 **.map
+dist/

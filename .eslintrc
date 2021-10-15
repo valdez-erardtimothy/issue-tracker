@@ -1,0 +1,24 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "linebreak-style": [
+            "warn",
+            "windows"
+        ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        // allow _id from mongodb
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": [
+                    "_id"
+                ]
+            }
+        ],
+    }
+}
