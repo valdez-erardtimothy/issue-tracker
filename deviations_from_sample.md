@@ -96,3 +96,7 @@ Update: tested on a clone with mint VM, tested with Firefox browser in VM, and c
 used @babel/register instead of babel-register.
 
 version bumped from 6.x to 7.15
+
+## React-router-dom
+
+followed instructor lecture. I do not know how different the code is from the book.

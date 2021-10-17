@@ -5,6 +5,6 @@
     "rules": {
         "no-alert": [
             "off"
-        ]
+        ],
     }
 }

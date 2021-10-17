@@ -1,17 +1,16 @@
 import express from 'express';
 import path from 'path';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import process from 'process';
 import 'babel-polyfill';
 
 import SourceMapSupport from 'source-map-support';
-import Issue from './issue.js';
+import Issue from './issue';
 
 const app = express();
 
 SourceMapSupport.install();
 
-app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
 // mongoDB part
@@ -34,10 +33,14 @@ app.use(async (req, res, next) => {
 // express part
 
 if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line
   const webpack = require('webpack');
+  // eslint-disable-next-line
   const webpackConf = require('../webpack.dev.js');
   const compiler = webpack(webpackConf);
+  // eslint-disable-next-line
   const devMiddleware = require('webpack-dev-middleware');
+  // eslint-disable-next-line
   const hotMiddleware = require('webpack-hot-middleware');
 
   app.use((req, res, next) => {
@@ -52,20 +55,44 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-app.get('/api/issues', async (req, res) => {
-  // const metadata = { total_count: issues.length };
-  // res.json({ _metadata: metadata, records: issues });
-  // await dbClient.connect();
-  // console.debug("issue collection:", dbIssueCollection);
-  // const issues = dbIssueCollection.find()
-  dbIssueCollection.find()
-    .toArray()
+// issuelist/issuefilter
+app.get('/api/issues', (req, res) => {
+  console.debug('api issues hit.');
+  console.debug('request query:', req.query);
+  const filter = {};
+  if (req.query.status) { filter.status = req.query.status; }
+  if (req.query.effort_lte || req.query.effort_gte) { filter.effort = {}; }
+  if (req.query.effort_lte) { filter.effort.$lte = parseInt(req.query.effort_lte, 10); }
+  if (req.query.effort_gte) { filter.effort.$gte = parseInt(req.query.effort_gte, 10); }
+  console.log(filter);
+  db.collection('issues').find(filter).toArray()
     .then((issues) => {
-      const metadata = {
-        total_count: issues.length,
-      };
-
-      res.json({ metadata, records: issues });
+      // console.debug('issues collected: ', issues);
+      const metadata = { total_count: issues.length };
+      res.json({ _metadata: metadata, records: issues });
+    })
+    .catch((error) => {
+      // console.log(error);
+      res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+});
+// issueedit page
+app.get('/api/issues/:id', (req, res) => {
+  console.log(new ObjectId(req.params.id));
+  let issueId;
+  try {
+    issueId = new ObjectId(req.params.id);
+  } catch (error) {
+    res.status(422).json({ message: `Invalid issue ID format: ${error}` });
+    return;
+  }
+  db.collection('issues').find({ _id: issueId }).limit(1).next()
+    .then((issue) => {
+      if (!issue) { res.status(404).json({ message: `No such issue: ${issueId}` }); } else { res.json(issue); }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: `Internal Server Error: ${error}` });
     });
 });
 
@@ -94,6 +121,8 @@ app.post('/api/issues', (req, res) => {
     });
 });
 
+// fallback route, delegate to frontend
+app.use('/**', express.static(path.join(__dirname, '../public')));
 app.listen(3000, () => {
   console.debug('App stated on port 3000');
 });

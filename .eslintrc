@@ -20,5 +20,25 @@
                 ]
             }
         ],
+        // react eslint rules
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        // TODO remove when cleanup
+        "react/prefer-stateless-function": [
+            "off"
+        ],
+        "react/prop-types": [
+            "off"
+        ],
+        "react/destructuring-assignment": [
+            "off"
+        ],
+        "react/button-has-type": [
+            "off"
+        ]
     }
 }

@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+
 module.exports = {
   entry: {
     app: [path.resolve(__dirname, 'src/App.jsx')],
@@ -7,7 +7,10 @@ module.exports = {
   output: {
     publicPath: '/js/',
     path: path.resolve(__dirname, 'public/js'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   mode: 'development',
   module: {
@@ -20,16 +23,16 @@ module.exports = {
             presets: [
               ['@babel/preset-env', {
                 corejs: {
-                  version: "3",
+                  version: '3',
                 },
-                targets: 'defaults'
+                targets: 'defaults',
               }],
-              ['@babel/preset-react']
-            ]
-          }
-        }
-      }
-    ]
+              ['@babel/preset-react'],
+            ],
+          },
+        },
+      },
+    ],
 
   },
 };
